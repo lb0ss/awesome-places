@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddPlacePage } from '../pages/add-place/add-place';
 import { PlacePage } from '../pages/place/place';
 import { SetLocationPage } from '../pages/set-location/set-location';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,10 @@ import { SetLocationPage } from '../pages/set-location/set-location';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBt7NoNEdlld7-e0c_Lkk5ZspND-kFdKaE'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

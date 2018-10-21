@@ -7,7 +7,7 @@ import { SetLocationPage } from './set-location';
     SetLocationPage,
   ],
   imports: [
-    IonicPageModule.forChild(SetLocationPage),
+    IonicPageModule.forChild(SetLocationPage)
   ],
 })
 export class SetLocationPageModule {}
