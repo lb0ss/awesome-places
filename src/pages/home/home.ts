@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddPlacePage } from '../add-place/add-place';
+import { Place } from "../../models/place";
+import { PlacesProvider } from '../../providers/places';
 
 @IonicPage()
 @Component({
@@ -9,11 +11,16 @@ import { AddPlacePage } from '../add-place/add-place';
 })
 export class HomePage {
   addPlacePage = AddPlacePage;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  places: Place[];
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private placesProvider: PlacesProvider
+    ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+  ionViewWillEnter() {
+    this.places = this.placesProvider.loadPlaces();
   }
 
 }
