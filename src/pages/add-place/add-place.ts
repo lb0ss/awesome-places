@@ -4,6 +4,7 @@ import { ModalController, ToastController, LoadingController } from 'ionic-angul
 import { SetLocationPage } from '../set-location/set-location';
 import { Location } from "../../models/location";
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-add-place',
@@ -15,12 +16,14 @@ export class AddPlacePage {
     lng: -118.243683
   };
   locationIsSet = false;
+  imageUrl = '';
 
   constructor(
     private modalCtrl: ModalController,
     private geoLocation: Geolocation,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private camera: Camera
     ) {}
 
   onSubmit(form: NgForm) {
@@ -63,5 +66,25 @@ export class AddPlacePage {
         }
       }
     );
+  }
+  onTakePhoto() {
+    this.camera.getPicture({
+      quality: 100,
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true,
+      allowEdit: true
+    })
+    .then(
+      imageData => {
+        console.log(imageData);
+        this.imageUrl = imageData;
+      }
+    )
+    .catch(
+      err => {
+        console.log(err)
+      }
+    )
+    
   }
 }
