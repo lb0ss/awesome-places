@@ -5,6 +5,7 @@ import { SetLocationPage } from '../set-location/set-location';
 import { Location } from "../../models/location";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { PlacesProvider } from '../../providers/places';
 
 @Component({
   selector: 'page-add-place',
@@ -23,10 +24,19 @@ export class AddPlacePage {
     private geoLocation: Geolocation,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private camera: Camera
+    private camera: Camera,
+    private placesProvider: PlacesProvider
     ) {}
 
   onSubmit(form: NgForm) {
+    this.placesProvider.addPlace(form.value.title, form.value.description, this.location, this.imageUrl);
+    form.reset();
+    this.location = {
+      lat: 34.052235,
+      lng: -118.243683
+    };
+    this.imageUrl = '';
+    this.locationIsSet = false;
     console.log(form.value);
   }
 
