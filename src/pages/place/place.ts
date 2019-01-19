@@ -24,6 +24,7 @@ export class PlacePage {
   }
 
   onDelete() {
+    console.log("ondelete clicked");
     this.placesProvider.deletePlace(this.index);
     this.onLeave();
   }
